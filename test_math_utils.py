@@ -62,4 +62,23 @@ class TestMathUtils(unittest.TestCase):
         self.assertEqual(MathUtils.power_of(2,3), 8)
         self.assertEqual(MathUtils.power_of(1, 3), 1)
         self.assertEqual(MathUtils.power_of(5, 3), 125)
-        self.assertEqual(MathUtils.power_of(3, 4), 200)
+        self.assertEqual(MathUtils.power_of(3, 4), 81)
+
+    def test_assertions(self):
+        self.assertTrue(1 == 1) # Identità di valore
+        self.assertFalse(1 == 2)
+        self.assertIs(None, None) # Identità di oggetti
+        self.assertIn(3, [1, 2, 3, 4, 5]) # Controllo in una lista
+        self.assertNotIn(5, [1, 2, 3, 4])
+
+    def test_add_parametrized(self):
+        """
+        Using subTest to test multiple cases with the same test function
+        """
+        test_cases = [(3,2,5), (-1,1,0), (0,0,0), (10,-10,0)]
+        for a,b, expected in test_cases:
+            with self.subTest(a = a, b = b, expected = expected):
+                self.assertEqual(MathUtils.add(a, b), expected)
+
+    if __name__ == "__main__":
+        unittest.main()
